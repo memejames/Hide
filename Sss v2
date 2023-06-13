@@ -121,10 +121,10 @@ local themeStyles = {
     },
     Kiwi = {
         SchemeColor = Color3.fromRGB(17, 255, 13),
-        Background = Color3.fromRGB(41, 41, 40),
+        Background = Color3.fromRGB(23, 23, 22),
         Header = Color3.fromRGB(23, 23, 22),
         TextColor = Color3.fromRGB(255,255,255),
-        ElementColor = Color3.fromRGB(17, 255, 13)
+        ElementColor = Color3.fromRGB(55, 59, 55)
     }
 }
 local oldTheme = ""
