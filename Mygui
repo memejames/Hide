@@ -1,75 +1,91 @@
 local MyUI = {}
 
--- Create a new GUI
 function MyUI.CreateGui()
-    local gui = {}
+    local ScreenGui = Instance.new("ScreenGui")
+    ScreenGui.Name = "MyGUI"
+    ScreenGui.Parent = game.Players.LocalPlayer.PlayerGui
 
-    -- Create the ScreenGui
-    gui.ScreenGui = Instance.new("ScreenGui")
-    gui.ScreenGui.Name = "MyUI"
-    gui.ScreenGui.Parent = game.Players.LocalPlayer.PlayerGui
+    local frame = Instance.new("Frame")
+    frame.Name = "MyFrame"
+    frame.Position = UDim2.new(0.5, -100, 0.5, -75)
+    frame.Size = UDim2.new(0, 200, 0, 150)
+    frame.BackgroundColor3 = Color3.new(0, 0, 0)
+    frame.BorderSizePixel = 0
+    frame.Active = true
+    frame.Parent = ScreenGui
 
-    -- Create the Frame
-    gui.Frame = Instance.new("Frame")
-    gui.Frame.Name = "MyFrame"
-    gui.Frame.Size = UDim2.new(0, 200, 0, 150)
-    gui.Frame.Position = UDim2.new(0.5, -100, 0.5, -75)
-    gui.Frame.BackgroundColor3 = Color3.new(0, 0, 0)
-    gui.Frame.BorderSizePixel = 0
-    gui.Frame.Active = true
-    gui.Frame.Parent = gui.ScreenGui
+    local title = Instance.new("TextLabel")
+    title.Name = "Title"
+    title.Size = UDim2.new(1, 0, 0, 30)
+    title.BackgroundColor3 = Color3.new(0, 0, 0)
+    title.TextColor3 = Color3.new(1, 1, 1)
+    title.Text = "My GUI Title"
+    title.Font = Enum.Font.SourceSansBold
+    title.TextSize = 18
+    title.Parent = frame
 
-    -- Create a button
-    function gui:CreateButton(buttonText, buttonInfo, onClick)
+    function frame:NewButton(buttonText, buttonInfo, onClick)
         local button = Instance.new("TextButton")
         button.Name = "MyButton"
         button.Size = UDim2.new(0, 100, 0, 50)
         button.Position = UDim2.new(0.5, -50, 0.5, -25)
         button.BackgroundColor3 = Color3.new(1, 1, 1)
         button.Text = buttonText
-        button.Parent = gui.Frame
+        button.Parent = frame
 
-        -- Connect the button click event
-        button.MouseButton1Click:Connect(function()
-            onClick(buttonInfo)
-        end)
+        button.MouseButton1Click:Connect(onClick)
 
         return button
     end
 
-    -- Create a label
-    function gui:CreateLabel(text)
-        local label = Instance.new("TextLabel")
-        label.Name = "MyLabel"
-        label.Size = UDim2.new(1, 0, 1, 0)
-        label.BackgroundColor3 = Color3.new(0, 0, 0)
-        label.TextColor3 = Color3.new(1, 1, 1)
-        label.Text = text
-        label.Font = Enum.Font.SourceSansBold
-        label.TextSize = 18
-        label.Parent = gui.Frame
+    local closeButton = Instance.new("TextButton")
+    closeButton.Name = "CloseButton"
+    closeButton.Size = UDim2.new(0, 20, 0, 20)
+    closeButton.Position = UDim2.new(1, -25, 0, 5)
+    closeButton.BackgroundColor3 = Color3.new(1, 0, 0)
+    closeButton.Text = "X"
+    closeButton.TextColor3 = Color3.new(1, 1, 1)
+    closeButton.Font = Enum.Font.SourceSansBold
+    closeButton.TextSize = 14
+    closeButton.Parent = frame
 
-        return label
+    local function closeGUI()
+        ScreenGui:Destroy()
     end
 
-    -- Create an image
-    function gui:CreateImage(imageId)
-        local image = Instance.new("ImageLabel")
-        image.Name = "MyImage"
-        image.Size = UDim2.new(1, 0, 1, 0)
-        image.BackgroundTransparency = 1
-        image.Image = imageId
-        image.Parent = gui.Frame
+    closeButton.MouseButton1Click:Connect(closeGUI)
 
-        return image
+    local initialTouchPosition
+    local initialFramePosition
+
+    local function handleTouchEvent(input)
+        if input.UserInputType == Enum.UserInputType.Touch then
+            if input.UserInputState == Enum.UserInputState.Begin then
+                initialTouchPosition = input.Position
+                initialFramePosition = frame.Position
+            elseif input.UserInputState == Enum.UserInputState.Change then
+                local delta = input.Position - initialTouchPosition
+                frame.Position = UDim2.new(
+                    initialFramePosition.X.Scale,
+                    initialFramePosition.X.Offset + delta.X,
+                    initialFramePosition.Y.Scale,
+                    initialFramePosition.Y.Offset + delta.Y
+                )
+            end
+        end
     end
 
-    -- Destroy the GUI
-    function gui:Destroy()
-        gui.ScreenGui:Destroy()
-    end
+    frame.InputBegan:Connect(handleTouchEvent)
+    frame.InputChanged:Connect(handleTouchEvent)
 
-    return gui
+    frame.AncestryChanged:Connect(function()
+        if not frame:IsDescendantOf(game.Players.LocalPlayer.PlayerGui) then
+            frame.InputBegan:Disconnect()
+            frame.InputChanged:Disconnect()
+        end
+    end)
+
+    return ScreenGui, frame
 end
 
 return MyUI
