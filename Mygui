@@ -1,42 +1,75 @@
--- Create a module for the GUI library
-local MyGUI = {}
+local MyUI = {}
 
--- Create GUI function
-function MyGUI.CreateGui()
+-- Create a new GUI
+function MyUI.CreateGui()
+    local gui = {}
+
     -- Create the ScreenGui
-    local screenGui = Instance.new("ScreenGui")
-    screenGui.Name = "MyGUI"
-    screenGui.Parent = game.Players.LocalPlayer.PlayerGui
+    gui.ScreenGui = Instance.new("ScreenGui")
+    gui.ScreenGui.Name = "MyUI"
+    gui.ScreenGui.Parent = game.Players.LocalPlayer.PlayerGui
 
     -- Create the Frame
-    local frame = Instance.new("Frame")
-    frame.Name = "MyFrame"
-    frame.Size = UDim2.new(0, 200, 0, 150)
-    frame.Position = UDim2.new(0.5, -100, 0.5, -75)
-    frame.BackgroundColor3 = Color3.new(0, 0, 0)
-    frame.BorderSizePixel = 0
-    frame.Active = true
-    frame.Parent = screenGui
+    gui.Frame = Instance.new("Frame")
+    gui.Frame.Name = "MyFrame"
+    gui.Frame.Size = UDim2.new(0, 200, 0, 150)
+    gui.Frame.Position = UDim2.new(0.5, -100, 0.5, -75)
+    gui.Frame.BackgroundColor3 = Color3.new(0, 0, 0)
+    gui.Frame.BorderSizePixel = 0
+    gui.Frame.Active = true
+    gui.Frame.Parent = gui.ScreenGui
 
-    -- Function to create a button
-    function frame:NewButton(buttonText, buttonInfo, onClick)
+    -- Create a button
+    function gui:CreateButton(buttonText, buttonInfo, onClick)
         local button = Instance.new("TextButton")
         button.Name = "MyButton"
         button.Size = UDim2.new(0, 100, 0, 50)
         button.Position = UDim2.new(0.5, -50, 0.5, -25)
         button.BackgroundColor3 = Color3.new(1, 1, 1)
         button.Text = buttonText
-        button.Parent = frame
+        button.Parent = gui.Frame
 
         -- Connect the button click event
-        button.MouseButton1Click:Connect(onClick)
+        button.MouseButton1Click:Connect(function()
+            onClick(buttonInfo)
+        end)
 
         return button
     end
 
-    -- Return the ScreenGui and Frame for further customization
-    return screenGui, frame
+    -- Create a label
+    function gui:CreateLabel(text)
+        local label = Instance.new("TextLabel")
+        label.Name = "MyLabel"
+        label.Size = UDim2.new(1, 0, 1, 0)
+        label.BackgroundColor3 = Color3.new(0, 0, 0)
+        label.TextColor3 = Color3.new(1, 1, 1)
+        label.Text = text
+        label.Font = Enum.Font.SourceSansBold
+        label.TextSize = 18
+        label.Parent = gui.Frame
+
+        return label
+    end
+
+    -- Create an image
+    function gui:CreateImage(imageId)
+        local image = Instance.new("ImageLabel")
+        image.Name = "MyImage"
+        image.Size = UDim2.new(1, 0, 1, 0)
+        image.BackgroundTransparency = 1
+        image.Image = imageId
+        image.Parent = gui.Frame
+
+        return image
+    end
+
+    -- Destroy the GUI
+    function gui:Destroy()
+        gui.ScreenGui:Destroy()
+    end
+
+    return gui
 end
 
--- Return the module
-return MyGUI
+return MyUI
