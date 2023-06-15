@@ -1,0 +1,42 @@
+-- Create a module for the GUI library
+local MyGUI = {}
+
+-- Create GUI function
+function MyGUI.CreateGui()
+    -- Create the ScreenGui
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "MyGUI"
+    screenGui.Parent = game.Players.LocalPlayer.PlayerGui
+
+    -- Create the Frame
+    local frame = Instance.new("Frame")
+    frame.Name = "MyFrame"
+    frame.Size = UDim2.new(0, 200, 0, 150)
+    frame.Position = UDim2.new(0.5, -100, 0.5, -75)
+    frame.BackgroundColor3 = Color3.new(0, 0, 0)
+    frame.BorderSizePixel = 0
+    frame.Active = true
+    frame.Parent = screenGui
+
+    -- Function to create a button
+    function frame:NewButton(buttonText, buttonInfo, onClick)
+        local button = Instance.new("TextButton")
+        button.Name = "MyButton"
+        button.Size = UDim2.new(0, 100, 0, 50)
+        button.Position = UDim2.new(0.5, -50, 0.5, -25)
+        button.BackgroundColor3 = Color3.new(1, 1, 1)
+        button.Text = buttonText
+        button.Parent = frame
+
+        -- Connect the button click event
+        button.MouseButton1Click:Connect(onClick)
+
+        return button
+    end
+
+    -- Return the ScreenGui and Frame for further customization
+    return screenGui, frame
+end
+
+-- Return the module
+return MyGUI
