@@ -666,7 +666,7 @@ function Kavo.CreateLib(kavName, themeList)
                 touch.BorderColor3 = Color3.fromRGB(27, 42, 53)
                 touch.Position = UDim2.new(0.0199999996, 0, 0.180000007, 0)
                 touch.Size = UDim2.new(0, 21, 0, 21)
-                touch.Image = "rbxassetid://13766209946"
+                touch.Image = "rbxassetid://13033244654"
                 touch.ImageColor3 = themeList.SchemeColor
                 Objects[touch] = "SchemeColor"
                 touch.ImageRectOffset = Vector2.new(84, 204)
