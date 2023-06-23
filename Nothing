@@ -1,7 +1,3 @@
-if game.CoreGui:FindFirstChild("SOMEXHUBMODILE") then
-    game.CoreGui:FindFirstChild("SOMEXHUBMODILE"):Destroy()
-end
-
 local SOMEXHUBMODILE = Instance.new("ScreenGui")
 local MODILEGUISOMEXHUB = Instance.new("TextButton")
 local MODILEGUISOMEXHUBHUI = Instance.new("UICorner")
