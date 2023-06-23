@@ -101,9 +101,9 @@ local function MakeDraggable(topbarobject, object)
 	)
 end
 
-local Update = {}
+local DarkraiX = {}
 
-function Update:Window(text,logo,keybind)
+function DarkraiX:Window(text,logo,keybind)
 	local uihide = false
 	local abc = false
 	local logo = logo or 0
