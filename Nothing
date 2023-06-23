@@ -1,16 +1,49 @@
+if game.CoreGui:FindFirstChild("SOMEXHUBMODILE") then
+    game.CoreGui:FindFirstChild("SOMEXHUBMODILE"):Destroy()
+end
 
-local PlaceName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
+local SOMEXHUBMODILE = Instance.new("ScreenGui")
+local MODILEGUISOMEXHUB = Instance.new("TextButton")
+local MODILEGUISOMEXHUBHUI = Instance.new("UICorner")
+local MODILEMAGE = Instance.new("ImageLabel")
 
-    if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
-    
-    repeat wait() until game:GetService("Players")
-    
-    if not game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then repeat wait() until game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") end
-        
-    wait(1)
+SOMEXHUBMODILE.Name = "SOMEXHUBMODILE"
+        SOMEXHUBMODILE.Parent = game.CoreGui
+        SOMEXHUBMODILE.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-do local GUI = game.CoreGui:FindFirstChild("Darkrai");if GUI then GUI:Destroy();end;if _G.Color == nil then
-       _G.Color = Color3.fromRGB(147,112,219)
+        MODILEGUISOMEXHUB.Name = "MODILEGUISOMEXHUB"
+        MODILEGUISOMEXHUB.Parent = SOMEXHUBMODILE
+        MODILEGUISOMEXHUB.BackgroundColor3 = Color3.fromRGB(30,20,20)
+        MODILEGUISOMEXHUB.BorderSizePixel = 0
+        MODILEGUISOMEXHUB.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
+        MODILEGUISOMEXHUB.Size = UDim2.new(0, 50, 0, 50)
+        MODILEGUISOMEXHUB.Font = Enum.Font.SourceSans
+        MODILEGUISOMEXHUB.Text = "X"
+        MODILEGUISOMEXHUB.TextColor3 = Color3.fromRGB(255, 255, 255)
+        MODILEGUISOMEXHUB.TextSize = 14.000
+        MODILEGUISOMEXHUB.Draggable = true
+        MODILEGUISOMEXHUB.MouseButton1Click:Connect(function()
+        game.CoreGui:FindFirstChild("SOMEXHUB").Enabled = not game.CoreGui:FindFirstChild("SOMEXHUB").Enabled
+        end)
+        do
+        if game:GetService("CoreGui"):FindFirstChild("SOMEXHUB") then
+        end
+        end
+
+        MODILEGUISOMEXHUBHUI.Name = "MODILEGUISOMEXHUBHUI"
+        MODILEGUISOMEXHUBHUI.Parent = MODILEGUISOMEXHUB
+
+        MODILEMAGE.Name = "MODILEMAGE"
+        MODILEMAGE.Parent = MODILEGUISOMEXHUB
+        MODILEMAGE.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        MODILEMAGE.BackgroundTransparency = 1.000
+        MODILEMAGE.BorderSizePixel = 0
+        MODILEMAGE.Position = UDim2.new(0, 3, 0, 2)
+        MODILEMAGE.Size = UDim2.new(0, 45, 0, 45)
+        MODILEMAGE.Image = "rbxassetid://9614132122"
+
+do local GUI = game.CoreGui:FindFirstChild("SOMEXHUB");if GUI then GUI:Destroy();end;if _G.Color == nil then
+       _G.Color = Color3.fromRGB(255,0,0)
    end 
 end
 
@@ -68,115 +101,92 @@ local function MakeDraggable(topbarobject, object)
 	)
 end
 
-local DarkraiX = {}
+local Update = {}
 
-function DarkraiX:ToggleUi()
-if game.CoreGui:FindFirstChild("Darkrai").Enabled == true then -- oh am dumb
-game.CoreGui:FindFirstChild("Darkrai").Enabled = false
-else
-game.CoreGui:FindFirstChild("Darkrai").Enabled = true
-end
-end
-
-function DarkraiX:Window(text,gamenme,logo,keybind)
-    local hubname = text
-    local gamename = gamenme
+function Update:Window(text,logo,keybind)
 	local uihide = false
 	local abc = false
 	local logo = logo or 0
 	local currentpage = ""
 	local keybind = keybind or Enum.KeyCode.RightControl
 	local yoo = string.gsub(tostring(keybind),"Enum.KeyCode.","")
-	if gamename == "" then 
-	    gamename = ""..PlaceName.Name
-    end
 	
-	local Darkrai = Instance.new("ScreenGui") -- guess i am using hubname wrong
-	Darkrai.Name = "Darkrai" -- wait
-	Darkrai.Parent = game.CoreGui
-	Darkrai.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	local SOMEXHUB = Instance.new("ScreenGui")
+	SOMEXHUB.Name = "SOMEXHUB"
+	SOMEXHUB.Parent = game.CoreGui
+	SOMEXHUB.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	local Main = Instance.new("Frame")
 	Main.Name = "Main"
-	Main.Parent = Darkrai
+	Main.Parent = SOMEXHUB
 	Main.ClipsDescendants = true
 	Main.AnchorPoint = Vector2.new(0.5,0.5)
 	Main.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 	Main.Position = UDim2.new(0.5, 0, 0.5, 0)
 	Main.Size = UDim2.new(0, 0, 0, 0)
 	
-	Main:TweenSize(UDim2.new(0, 656, 0, 400),"Out","Quad",0.4,true)
-
-	local MCNR = Instance.new("UICorner")
-	MCNR.Name = "MCNR"
-	MCNR.Parent = Main
-
+	Main:TweenSize(UDim2.new(0, 656, 0, 350),"Out","Quad",0.4,true)
+	
 	local Top = Instance.new("Frame")
 	Top.Name = "Top"
 	Top.Parent = Main
 	Top.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
 	Top.Size = UDim2.new(0, 656, 0, 27)
-
-	local TCNR = Instance.new("UICorner")
-	TCNR.Name = "TCNR"
-	TCNR.Parent = Top
-
-	local Logo = Instance.new("ImageLabel")
-	Logo.Name = "Logo"
-	Logo.Parent = Top
-	Logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	Logo.BackgroundTransparency = 1.000
-	Logo.Position = UDim2.new(0, 10, 0, 1)
-	Logo.Size = UDim2.new(0, 25, 0, 25)
-	Logo.Image = ""
-
+	
 	local Name = Instance.new("TextLabel")
 	Name.Name = "Name"
 	Name.Parent = Top
 	Name.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	Name.BackgroundTransparency = 1.000
-	Name.Position = UDim2.new(0.0609756112, 0, 0, 0)
+	Name.Position = UDim2.new(0.0609756112, -25, 0, 0)
 	Name.Size = UDim2.new(0, 61, 0, 27)
 	Name.Font = Enum.Font.GothamSemibold
-	Name.Text = hubname
-	Name.TextColor3 = Color3.fromRGB(147,112,219)
+	Name.Text = text
+	Name.TextColor3 = Color3.fromRGB(225, 225, 225)
 	Name.TextSize = 17.000
 
 	local Hub = Instance.new("TextLabel")
 	Hub.Name = "Hub"
 	Hub.Parent = Top
-	Hub.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Hub.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 	Hub.BackgroundTransparency = 1.000
-	Hub.Position = UDim2.new(0, 110, 0, 0)
+	Hub.Position = UDim2.new(0, 85, 0, 0)
 	Hub.Size = UDim2.new(0, 81, 0, 27)
 	Hub.Font = Enum.Font.GothamSemibold
-	Hub.Text = "  | "..gamename
-	Hub.TextColor3 = Color3.fromRGB(147,112,219)
+	Hub.Text = " HUB | BF MOBILE OR PC"
+	Hub.TextColor3 = _G.Color
 	Hub.TextSize = 17.000
 	Hub.TextXAlignment = Enum.TextXAlignment.Left
-
-	local BindButton = Instance.new("TextButton")
-	BindButton.Name = "BindButton"
-	BindButton.Parent = Top
-	BindButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	BindButton.BackgroundTransparency = 1.000
-	BindButton.Position = UDim2.new(0.847561002, 0, 0, 0)
-	BindButton.Size = UDim2.new(0, 100, 0, 27)
-	BindButton.Font = Enum.Font.GothamSemibold
-	BindButton.Text = "[RightControl]"
-	BindButton.TextColor3 = Color3.fromRGB(147,112,219)
-	BindButton.TextSize = 13.000
+	
+	local Hubb = Instance.new("TextLabel")
+	Hubb.Name = "Hubb"
+	Hubb.Parent = Top
+	Hubb.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+	Hubb.BackgroundTransparency = 1.000
+	Hubb.Position = UDim2.new(0, 480, 0, 0)
+	Hubb.Size = UDim2.new(0, 81, 0, 27)
+	Hubb.Font = Enum.Font.GothamSemibold
+	Hubb.Text = "VERSION : FREE"
+	Hubb.TextColor3 = _G.Color
+	Hubb.TextSize = 17.000
+	Hubb.TextXAlignment = Enum.TextXAlignment.Left
 
 	local Tab = Instance.new("Frame")
 	Tab.Name = "Tab"
 	Tab.Parent = Main
 	Tab.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+	Tab.BackgroundTransparency = 1.000
 	Tab.Position = UDim2.new(0, 5, 0, 30)
-	Tab.Size = UDim2.new(0, 150, 0, 365)
+	Tab.Size = UDim2.new(0, 150, 0, 350)
 
-	local TCNR = Instance.new("UICorner")
-	TCNR.Name = "TCNR"
-	TCNR.Parent = Tab
+local LogoHub = Instance.new("ImageLabel")
+	LogoHub.Name = "LogoHub"
+	LogoHub.Parent = Tab
+	LogoHub.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	LogoHub.BackgroundTransparency = 1.000
+	LogoHub.Position = UDim2.new(0, 0, 0, 1)
+	LogoHub.Size = UDim2.new(0, 150, 0, 150)
+	LogoHub.Image = "http://www.roblox.com/asset/?id="..tostring(9614132122)
 
 	local ScrollTab = Instance.new("ScrollingFrame")
 	ScrollTab.Name = "ScrollTab"
@@ -206,10 +216,6 @@ function DarkraiX:Window(text,gamenme,logo,keybind)
 	Page.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
 	Page.Position = UDim2.new(0.245426834, 0, 0.075000003, 0)
 	Page.Size = UDim2.new(0, 490, 0, 365)
-
-	local PCNR = Instance.new("UICorner")
-	PCNR.Name = "PCNR"
-	PCNR.Parent = Page
 
 	local MainPage = Instance.new("Frame")
 	MainPage.Name = "MainPage"
@@ -245,27 +251,37 @@ function DarkraiX:Window(text,gamenme,logo,keybind)
 				Main:TweenSize(UDim2.new(0, 0, 0, 0),"In","Quad",0.4,true)
 			else
 				uihide = false
-				Main:TweenSize(UDim2.new(0, 656, 0, 400),"Out","Quad",0.4,true)
+				Main:TweenSize(UDim2.new(0, 656, 0, 350),"Out","Quad",0.4,true)
 			end
 		end
 	end)
 	
 	local uitab = {}
 	
-	function uitab:Tab(text)
+	function uitab:Tab(text,image)
+	    local Image = image
+	    
 		local TabButton = Instance.new("TextButton")
 		TabButton.Parent = ScrollTab
 		TabButton.Name = text.."Server"
 		TabButton.Text = text
 		TabButton.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
-	    TabButton.BorderColor3 = Color3.fromRGB(255,255,255)
-        TabButton.BorderSizePixel = 3
+		TabButton.BackgroundTransparency = 0.150
 		TabButton.Size = UDim2.new(0, 130, 0, 23)
 		TabButton.Font = Enum.Font.GothamSemibold
 		TabButton.TextColor3 = Color3.fromRGB(225, 225, 225)
 		TabButton.TextSize = 15.000
 		TabButton.TextTransparency = 0.500
 
+            local PageImage = Instance.new("ImageLabel")
+            PageImage.Name = "PageImage"
+            PageImage.Parent = TabButton
+            PageImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            PageImage.BackgroundTransparency = 1.000
+            PageImage.Position = UDim2.new(0, 5, 0, 5)
+            PageImage.Size = UDim2.new(0, 15, 0, 15)
+            PageImage.Image = "rbxassetid://"..tostring(Image)
+            
 		local MainFramePage = Instance.new("ScrollingFrame")
 		MainFramePage.Name = text.."_Page"
 		MainFramePage.Parent = PageList
@@ -344,6 +360,7 @@ function DarkraiX:Window(text,gamenme,logo,keybind)
 			local TextBtn = Instance.new("TextButton")
 			local UICorner_2 = Instance.new("UICorner")
 			local Black = Instance.new("Frame")
+			local IMGTOG = Instance.new("ImageLabel")
 			local UICorner_3 = Instance.new("UICorner")
 			
 			Button.Name = "Button"
@@ -375,7 +392,7 @@ function DarkraiX:Window(text,gamenme,logo,keybind)
 			Black.BorderSizePixel = 0
 			Black.Position = UDim2.new(0, 1, 0, 1)
 			Black.Size = UDim2.new(0, 468, 0, 29)
-			
+	        
 			UICorner_3.CornerRadius = UDim.new(0, 5)
 			UICorner_3.Parent = Black
 
@@ -414,6 +431,7 @@ function DarkraiX:Window(text,gamenme,logo,keybind)
 			local ToggleImage = Instance.new("Frame")
 			local UICorner_3 = Instance.new("UICorner")
 			local Circle = Instance.new("Frame")
+			local IMGTOG = Instance.new("ImageLabel")
 			local UICorner_4 = Instance.new("UICorner")
 
 			Toggle.Name = "Toggle"
@@ -457,6 +475,28 @@ function DarkraiX:Window(text,gamenme,logo,keybind)
 
 			UICorner_3.CornerRadius = UDim.new(0, 10)
 			UICorner_3.Parent = ToggleImage
+
+local tggc = Instance.new("TextLabel")
+	tggc.Name = "tggc"
+	tggc.Parent = Toggle
+	tggc.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	tggc.BackgroundTransparency = 1.000
+	tggc.Position = UDim2.new(0, 40, 0, 3)
+	tggc.Size = UDim2.new(0, 81, 0, 27)
+	tggc.Font = Enum.Font.GothamSemibold
+    tggc.Text = "|"
+	tggc.TextColor3 = _G.Color
+	tggc.TextSize = 26.000
+	tggc.TextXAlignment = Enum.TextXAlignment.Left
+
+local LogoToggle = Instance.new("ImageLabel")
+	LogoToggle.Name = "LogoToggle"
+	LogoToggle.Parent = Toggle
+	LogoToggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	LogoToggle.BackgroundTransparency = 1.000
+	LogoToggle.Position = UDim2.new(0, 7, 0, 2)
+	LogoToggle.Size = UDim2.new(0, 26, 0, 26)
+	LogoToggle.Image = "http://www.roblox.com/asset/?id="..tostring(9614132122)
 
 			Circle.Name = "Circle"
 			Circle.Parent = ToggleImage
@@ -552,10 +592,10 @@ function DarkraiX:Window(text,gamenme,logo,keybind)
 			DropImage.Parent = Dropdown
 			DropImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			DropImage.BackgroundTransparency = 1.000
-			DropImage.Position = UDim2.new(0, 445, 0, 6)
+			DropImage.Position = UDim2.new(0, 435, 0, 6)
 			DropImage.Rotation = 180.000
 			DropImage.Size = UDim2.new(0, 20, 0, 20)
-			DropImage.Image = "rbxassetid://6031090990"
+			DropImage.Image = "rbxassetid://10162644180"
 			
 			DropButton.Name = "DropButton"
 			DropButton.Parent = Dropdown
@@ -840,7 +880,7 @@ function DarkraiX:Window(text,gamenme,logo,keybind)
 					circlebar.Position = UDim2.new(0, math.clamp(mouse.X - bar1.AbsolutePosition.X - 2, 0, 438), 0, -3)
 				end)
 				releaseconnection = uis.InputEnded:Connect(function(Mouse)
-					if Mouse.UserInputType == Enum.UserInputType.MouseButton1 or Mouse.UserInputType == Enum.UserInputType.Touch then
+					if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
 						Value = math.floor((((tonumber(max) - tonumber(min)) / 448) * bar1.AbsoluteSize.X) + tonumber(min))
 						pcall(function()
 							callback(Value)
@@ -853,7 +893,7 @@ function DarkraiX:Window(text,gamenme,logo,keybind)
 				end)
 			end)
 			releaseconnection = uis.InputEnded:Connect(function(Mouse)
-				if Mouse.UserInputType == Enum.UserInputType.MouseButton1 or Mouse.UserInputType == Enum.UserInputType.Touch  then
+				if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
 					Value = math.floor((((tonumber(max) - tonumber(min)) / 448) * bar1.AbsoluteSize.X) + tonumber(min))
 					TextBox.Text = Value
 				end
@@ -1032,4 +1072,3 @@ function DarkraiX:Window(text,gamenme,logo,keybind)
 	end
 	return uitab
 end
-return DarkraiX
