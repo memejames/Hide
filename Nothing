@@ -5,7 +5,6 @@ end
 local SOMEXHUBMODILE = Instance.new("ScreenGui")
 local MODILEGUISOMEXHUB = Instance.new("TextButton")
 local MODILEGUISOMEXHUBHUI = Instance.new("UICorner")
-local MODILEMAGE = Instance.new("ImageLabel")
 
 SOMEXHUBMODILE.Name = "SOMEXHUBMODILE"
         SOMEXHUBMODILE.Parent = game.CoreGui
@@ -29,18 +28,6 @@ SOMEXHUBMODILE.Name = "SOMEXHUBMODILE"
         if game:GetService("CoreGui"):FindFirstChild("Darkrai") then
         end
         end
-
-        MODILEGUISOMEXHUBHUI.Name = "MODILEGUISOMEXHUBHUI"
-        MODILEGUISOMEXHUBHUI.Parent = MODILEGUISOMEXHUB
-
-        MODILEMAGE.Name = "MODILEMAGE"
-        MODILEMAGE.Parent = MODILEGUISOMEXHUB
-        MODILEMAGE.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        MODILEMAGE.BackgroundTransparency = 1.000
-        MODILEMAGE.BorderSizePixel = 0
-        MODILEMAGE.Position = UDim2.new(0, 3, 0, 2)
-        MODILEMAGE.Size = UDim2.new(0, 45, 0, 45)
-        MODILEMAGE.Image = "rbxassetid://9614132122"
 
 local PlaceName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
 
