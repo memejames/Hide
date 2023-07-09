@@ -2056,3 +2056,7 @@ end)
 features:AddButton("Triple Jump",function()
 	game:GetService("Workspace").Triple.Value = true
 end)
+
+features:AddButton("God mode",function()
+	game:GetService("Workspace").EasyMode.Value = true
+end)
