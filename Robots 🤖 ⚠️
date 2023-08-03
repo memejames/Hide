@@ -1,4 +1,4 @@
--- LOST OTHER ACCOUNT BC OF SCRIPTBLOX BREAKDOWN, MADE THIS ONE!
+-- previous account lost bc of scriptblox down
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/memejames/Hide/main/Sss%20v2"))()
 
@@ -9,6 +9,8 @@ local Main = Window:NewTab("Main")
 local All = Main:NewSection("Robots")
 local Main2 = Window:NewTab("Robot Features")
 local All2 = Main2:NewSection("Features")
+
+All:NewLabel("temporary robots, u may need to press robot again!")
 
 All:NewButton("Default", "fuck", function()
 local args = {
@@ -85,7 +87,9 @@ local MessageBox = loadstring(game:HttpGet("https://raw.githubusercontent.com/xH
 MessageBox.Show({Position = UDim2.new(0.5,0,0.5,0), Text = "Ready?", Description = "Press Yes for the script, press No to not load script", MessageBoxIcon = "Question", MessageBoxButtons = "YesNo", Result = function(res)
    if (res == "Yes") then
    MessageBox.Show({MessageBoxButtons = "OK", Description = "Thanks For Using My Script", Text = "W"})
-  -- U can use my button gui 
+
+-- U can use my button gui
+
  local gui = Instance.new("ScreenGui", game.CoreGui)
 local btn = Instance.new("TextButton", gui)
 local UICorner = Instance.new("UICorner")
