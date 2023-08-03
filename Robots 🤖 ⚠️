@@ -1,0 +1,122 @@
+-- LOST OTHER ACCOUNT BC OF SCRIPTBLOX BREAKDOWN, MADE THIS ONE!
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/memejames/Hide/main/Sss%20v2"))()
+
+local Window = Library.CreateLib("Build To Survive The Robots", "Kiwi")
+
+-- Tabs
+local Main = Window:NewTab("Main")
+local All = Main:NewSection("Robots")
+local Main2 = Window:NewTab("Robot Features")
+local All2 = Main2:NewSection("Features")
+
+All:NewButton("Default", "fuck", function()
+local args = {
+    [1] = game:GetService("ReplicatedStorage").Assets.Robots.Default
+}
+
+game:GetService("ReplicatedStorage").Remotes.Robot.Spawn:FireServer(unpack(args))
+end) 
+
+All:NewButton("Tank", "fuck", function()
+local args = {
+    [1] = game:GetService("ReplicatedStorage").Assets.Robots.Tank
+}
+
+game:GetService("ReplicatedStorage").Remotes.Robot.Spawn:FireServer(unpack(args))
+end) 
+
+All:NewButton("Ghost", "fuck", function()
+local args = {
+    [1] = game:GetService("ReplicatedStorage").Assets.Robots.Ghost
+}
+
+game:GetService("ReplicatedStorage").Remotes.Robot.Spawn:FireServer(unpack(args))
+end) 
+
+All:NewButton("Marksman", "fuck", function()
+local args = {
+    [1] = game:GetService("ReplicatedStorage").Assets.Robots.Marksman
+}
+
+game:GetService("ReplicatedStorage").Remotes.Robot.Spawn:FireServer(unpack(args))
+end) 
+
+All:NewButton("Jumper", "fuck", function()
+local args = {
+    [1] = game:GetService("ReplicatedStorage").Assets.Robots.Jumper
+}
+
+game:GetService("ReplicatedStorage").Remotes.Robot.Spawn:FireServer(unpack(args))
+end)
+
+All:NewButton("Saboteur", "fuck", function()
+local args = {
+    [1] = game:GetService("ReplicatedStorage").Assets.Robots.Saboteur
+}
+
+game:GetService("ReplicatedStorage").Remotes.Robot.Spawn:FireServer(unpack(args))
+end)
+
+All:NewButton("Skirmisher", "fuck", function()
+local args = {
+    [1] = game:GetService("ReplicatedStorage").Assets.Robots.Skirmisher
+}
+
+game:GetService("ReplicatedStorage").Remotes.Robot.Spawn:FireServer(unpack(args))
+end) 
+
+All2:NewButton("Instant Explosion??!", "fuck", function()
+local MessageBox = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/NotificationGUI/main/source.lua"))()
+
+
+--[[
+   MessageBoxIcons:
+      â€¢ Question
+      â€¢ Error
+      â€¢ Warning
+
+   MessageBoxButtons:
+      â€¢ YesNo
+      â€¢ OKCancel
+      â€¢ OK
+--]]
+-- AnchorPoint is 0.5,0.5
+MessageBox.Show({Position = UDim2.new(0.5,0,0.5,0), Text = "Ready?", Description = "Press Yes for the script, press No to not load script", MessageBoxIcon = "Question", MessageBoxButtons = "YesNo", Result = function(res)
+   if (res == "Yes") then
+   MessageBox.Show({MessageBoxButtons = "OK", Description = "Thanks For Using My Script", Text = "W"})
+  -- U can use my button gui 
+ local gui = Instance.new("ScreenGui", game.CoreGui)
+local btn = Instance.new("TextButton", gui)
+local UICorner = Instance.new("UICorner")
+
+btn.Position = UDim2.new(0.5, 370, 0.5, 100)
+btn.Size = UDim2.new(0,60,0,60)
+btn.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+btn.BackgroundTransparency = 0.5
+btn.Text = "SPRAY!!!"
+btn.Font = Enum.Font.Cartoon
+btn.TextColor3 = Color3.new(255, 255, 255)
+btn.TextSize = 14
+
+local uistroke = Instance.new("UIStroke")
+uistroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+uistroke.Color = Color3.new(255, 255, 255)
+uistroke.Thickness = 2.4000000953674316
+uistroke.Parent = btn
+
+UICorner.CornerRadius = UDim.new(0, 100)
+UICorner.Parent = btn
+
+
+
+local function leftClick()
+game:GetService("ReplicatedStorage").Remotes.Robot.Explode:InvokeServer()
+end
+
+btn.MouseButton1Click:Connect(leftClick)
+   elseif (res == "No") then
+       MessageBox.Show({MessageBoxButtons = "OK", Description = "Ahh, Loser,  try better next time!", Text = "Nooooo"})
+   end
+end})
+end) 
