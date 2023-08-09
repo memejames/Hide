@@ -1,4 +1,4 @@
- --[[
+--[[
 	ui-engine-v2
 	version 1.3a
 	by Singularity (V3rm @ King Singularity) (Discord @ Singularity#5490)
@@ -2035,15 +2035,18 @@ features:Show() -- shows the tab
 local features2 = window:AddTab("Free Items2") -- Name of tab
 features2:Show() -- shows the tab
 
-local Badge = window:AddTab("FreeBadge") -- Name of it
+local Badge = window:AddTab("FB") -- Name of it
 Badge:Show() -- shows the tab
 
-Badge:AddLabel("Tutorial!  launch IY")
-Badge:AddLabel("enter touchinterests ")
-Badge:AddLabel(" to get all Badges")
+Badge:AddLabel("get all Badges")
 
-Badge:AddButton("IY Launch",function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source", true))()
+Badge:AddButton("Get All badges",function()
+	local c = game.Workspace.BoatBadge
+	 c.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+	local c = game.Workspace.RatHideoutBadge
+	 c.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+	local c = game.Workspace.FrontOfTheTrain
+	 c.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 end)
 
 features:AddButton("Acceleration Coil",function()
