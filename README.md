@@ -1,5 +1,3 @@
 # Hide
-Theme &
-etc
+scripts & themes for ui etc
 
-Welcome to My Page!
