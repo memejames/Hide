@@ -1,0 +1,116 @@
+local gui = Instance.new("ScreenGui")
+gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+gui.ResetOnSpawn = false
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 300, 0, 200)
+frame.Position = UDim2.new(0.5, -150, 0.4, -100)
+frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+frame.BorderSizePixel = 0
+frame.Active = true
+frame.Parent = gui
+frame.BackgroundTransparency = 0.2
+
+local closeButton = Instance.new("TextButton")
+closeButton.Text = "X"
+closeButton.Size = UDim2.new(0.1, 0, 0.1, 0)
+closeButton.Position = UDim2.new(0.9, 0, 0.023, 0)
+closeButton.TextSize = 20
+closeButton.Font = Enum.Font.FredokaOne
+closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+closeButton.BorderSizePixel = 0
+closeButton.Parent = frame
+closeButton.BackgroundTransparency = 1
+
+
+local function onCloseButtonClicked()
+    frame:Destroy()
+end
+
+closeButton.MouseButton1Click:Connect(onCloseButtonClicked)
+
+-- Rounded corners
+local UICorner = Instance.new("UICorner")
+	UICorner.Parent = frame
+	UICorner.CornerRadius = UDim.new(0, 9)
+	
+local uistroke = Instance.new("UIStroke")
+uistroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+uistroke.Color = Color3.new(245, 205, 48)
+uistroke.Thickness = 2.4000000953674
+uistroke.Parent = frame
+	
+	
+	
+local title = Instance.new("TextLabel")
+title.Text = "OBYB Script"
+title.Size = UDim2.new(1, 0, 0.15, 0)
+title.Position = UDim2.new(0, 0, 0, 0)
+title.TextSize = 20
+title.Font = Enum.Font.FredokaOne
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.BackgroundTransparency = 1
+title.Parent = frame
+
+
+
+local button1 = Instance.new("TextButton")
+button1.Text = "Tp to checkpoints"
+button1.Size = UDim2.new(0.63, -10, 0.35, -10)
+button1.Position = UDim2.new(0.2, 0, 0.4, 0)
+button1.TextSize = 16
+button1.Font = Enum.Font.FredokaOne
+button1.TextColor3 = Color3.fromRGB(255, 255, 255)
+button1.BackgroundColor3 = Color3.fromRGB(245, 205, 48)
+button1.BorderSizePixel = 0
+button1.Parent = frame
+local UICorner1 = Instance.new("UICorner")
+UICorner1.Parent = button1
+UICorner1.CornerRadius = UDim.new(0, 6)
+
+
+local function onButtonClicked()
+for i,v in pairs(game.Workspace.Nests:GetChildren())do
+if v:IsA("Part") and v.Name == "25" or v.Name == "20" or v.Name == "10"then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+wait(1)
+end
+end
+end
+
+
+
+button1.MouseButton1Click:Connect(onButtonClicked)
+
+
+-- Dragging functionality...
+-- Dragging functionality
+local isDragging = false
+local dragStartOffset
+local inputService = game:GetService("UserInputService")
+
+frame.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        isDragging = true
+        local initialInputPosition = input.Position
+        local initialFramePosition = frame.Position
+        
+        dragStartOffset = initialFramePosition - UDim2.new(0, initialInputPosition.X, 0, initialInputPosition.Y)
+    end
+end)
+
+inputService.InputChanged:Connect(function(input)
+    if isDragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+        local currentInputPosition = input.Position
+        frame.Position = UDim2.new(0, currentInputPosition.X, 0, currentInputPosition.Y) + dragStartOffset
+    end
+
+
+
+inputService.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        isDragging = false
+      end
+    end)
+end)
