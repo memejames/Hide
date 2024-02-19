@@ -38,7 +38,7 @@ local Tab4 = Window:MakeTab({
 })
 
 Tab:AddToggle({
-	Name = "Regen Health",
+	Name = "Auto Regen Health",
 	Default = false,
 	Callback = function(bool)
 		getgenv().regen = bool
@@ -49,7 +49,7 @@ end
 })
 
 Tab2:AddToggle({
-	Name = "Fix Toilet",
+	Name = "Auto Fix Toilet",
 	Default = false,
 	Callback = function(bool)
 		getgenv().toilet = bool
@@ -61,7 +61,7 @@ end
 
 
 Tab2:AddToggle({
-	Name = "Fix Virus",
+	Name = "Auto Fix Virus",
 	Default = false,
 	Callback = function(bool)
 		getgenv().virus = bool
