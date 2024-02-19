@@ -1,0 +1,315 @@
+getgenv().regen = false;
+getgenv().toilet = false;
+getgenv().virus = false;
+getgenv().door = false;
+getgenv().generator = false;
+getgenv().Fixp = false;
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/memejames/Nothing-project1/main/Suku')))()
+
+local Window = OrionLib:MakeWindow({Name = " Radiant Residents│F Hub", HidePremium = true, SaveConfig = false, ConfigFolder = "OrionTest", IntroText = "F Hub", IntroIcon = "rbxassetid://14500306259", IntroEnabled = true, Icon = "rbxassetid://14500306259"})
+
+-- Tabs and Toggles
+
+local Tab = Window:MakeTab({
+	Name = "Buffs",
+	Icon = "rbxassetid://7733798747",
+	PremiumOnly = false
+})
+
+local Tab2 = Window:MakeTab({
+	Name = "Clean and Fix",
+	Icon = "rbxassetid://7733955511",
+	PremiumOnly = false
+})
+
+local Tab3 = Window:MakeTab({
+	Name = "Lobby",
+	Icon = "rbxassetid://7733960981",
+	PremiumOnly = false
+})
+
+local Tab4 = Window:MakeTab({
+	Name = "Info",
+	Icon = "rbxassetid://7733964719",
+	PremiumOnly = false
+})
+
+Tab:AddToggle({
+	Name = "Regen Health",
+	Default = false,
+	Callback = function(bool)
+		getgenv().regen = bool
+		if bool == true then
+		regen()
+	end
+end
+})
+
+Tab2:AddToggle({
+	Name = "Fix Toilet",
+	Default = false,
+	Callback = function(bool)
+		getgenv().toilet = bool
+		if bool == true then
+		toilet()
+	end
+end
+})
+
+
+Tab2:AddToggle({
+	Name = "Fix Virus",
+	Default = false,
+	Callback = function(bool)
+		getgenv().virus = bool
+		if bool == true then
+		virus()
+	end
+end
+})
+
+Tab2:AddToggle({
+	Name = "Auto Door Defense",
+	Default = false,
+	Callback = function(bool)
+		getgenv().door = bool
+		if bool == true then
+		door()
+	end
+end
+})
+
+
+Tab2:AddToggle({
+	Name = "Auto Generate Power",
+	Default = false,
+	Callback = function(bool)
+		getgenv().generator = bool
+		if bool == true then
+		generator()
+	end
+end
+})
+
+
+Tab2:AddToggle({
+	Name = "Auto Fix Pipes",
+	Default = false,
+	Callback = function(bool)
+		getgenv().Fixp = bool
+		if bool == true then
+		Fixp()
+	end
+end
+})
+
+
+Tab3:AddDropdown({
+	Name = "Buy Themes",
+	Default = "Select..",
+	Options = {"Select..", "Raiders", "Japan", "Cozy Cabin", "Aquarium", "Christmas", "Overgrown", "Asylum", "Artficial Happiness", "Realistic Basement"},
+	Callback = function(Value)
+		if Value == "Raiders" then
+		local args = {
+    [1] = 1,
+    [2] = Value
+}
+
+game:GetService("ReplicatedStorage").BuyTheme:InvokeServer(unpack(args))
+elseif Value == "Japan" then
+		local args = {
+    [1] = 1,
+    [2] = Value
+}
+
+game:GetService("ReplicatedStorage").BuyTheme:InvokeServer(unpack(args))
+elseif Value == "Cozy Cabin" then
+		local args = {
+    [1] = 1,
+    [2] = Value
+}
+
+game:GetService("ReplicatedStorage").BuyTheme:InvokeServer(unpack(args))
+elseif Value == "Aquarium" then
+		local args = {
+    [1] = 1,
+    [2] = Value
+}
+
+game:GetService("ReplicatedStorage").BuyTheme:InvokeServer(unpack(args))
+elseif Value == "Christmas" then
+		local args = {
+    [1] = 1,
+    [2] = Value
+}
+
+game:GetService("ReplicatedStorage").BuyTheme:InvokeServer(unpack(args))
+elseif Value == "Overgrown" then
+		local args = {
+    [1] = 1,
+    [2] = Value
+}
+
+game:GetService("ReplicatedStorage").BuyTheme:InvokeServer(unpack(args))
+elseif Value == "Asylum" then
+		local args = {
+    [1] = 1,
+    [2] = Value
+}
+
+game:GetService("ReplicatedStorage").BuyTheme:InvokeServer(unpack(args))
+elseif Value == "Artficial Happiness" then
+		local args = {
+    [1] = 1,
+    [2] = Value
+}
+
+game:GetService("ReplicatedStorage").BuyTheme:InvokeServer(unpack(args))
+elseif Value == "Realistic Basement" then
+		local args = {
+    [1] = 1,
+    [2] = Value
+}
+
+game:GetService("ReplicatedStorage").BuyTheme:InvokeServer(unpack(args))
+       end
+	end    
+})
+
+-- INFO
+
+Tab4:AddParagraph("Creator of Script","The Script is made by Chinawasspyingonusa.")
+Tab4:AddParagraph("Progress of Script","The Script is in Beta, It may or may not be updated")
+
+-- Functions
+
+
+local char = game.Players.LocalPlayer.Character.Humanoid.Health
+
+function regen()
+    spawn(function()
+        while getgenv().regen do
+            local plr = game.Players.LocalPlayer
+            local char = plr.Character
+
+            if char and char:FindFirstChild("Humanoid") then
+                local health = char.Humanoid.Health
+
+                if health < 80 then
+                    local args = {
+                        [1] = 10000,
+                        [2] = false
+                    }
+
+                    game:GetService("ReplicatedStorage").Events.ChangingPlayerHealth:FireServer(unpack(args))
+                end
+            end
+
+            wait(0.5)
+        end
+    end)
+end
+
+
+-- Toilet
+function toilet()
+    spawn(function()
+        while getgenv().toilet do
+            local toiletSplash = game.workspace.Basement.Important.ToiletSplash
+
+            if toiletSplash and toiletSplash:FindFirstChild("ParticleEmitter") then
+                local particleEmitter = toiletSplash.ParticleEmitter
+
+                if particleEmitter and particleEmitter:IsA("ParticleEmitter") and particleEmitter.Enabled == true then
+                    game:GetService("ReplicatedStorage").Events.CleanedToilet:FireServer()
+                end
+            end
+
+            wait(0.1)  -- Adjust wait time as needed
+        end
+    end)
+end
+
+
+
+function virus()
+   spawn(function()
+   while getgenv().virus == true do
+   local args = {
+    [1] = "Healed"
+}
+
+game:GetService("ReplicatedStorage").Events.Virus:FireServer(unpack(args))
+           wait(5)
+           end
+      end)
+end
+
+
+
+function door()
+   spawn(function()
+   while getgenv().door == true do
+   local guiBar = game.Players.LocalPlayer.PlayerGui.BasementItemGUIs.Computer.CameraBackground.DefenseBar.DefenseBar
+
+            if guiBar and guiBar:IsA("Frame") then
+                local barSize = guiBar.Size.X.Scale
+
+                if barSize < 1 then
+   game:GetService("ReplicatedStorage").Events.SecurityCamera.ChangingHealth:FireServer()
+   end
+   end
+           wait(0)
+           end
+      end)
+end
+
+
+
+function generator()
+    spawn(function()
+        while getgenv().generator do
+            local g = game.workspace.Basement
+            local char = g.Important.Generator.Health
+
+                local health = char.Value
+
+                if health < 200 then
+                    game:GetService("ReplicatedStorage").Events.ChangingGeneratorHealth:FireServer()
+               end
+            wait(0.5)
+        end
+    end)
+end
+
+
+function Fixp()
+    spawn(function()
+        while getgenv().Fixp do
+            local pipes = {
+                game.workspace.Basement.Important.Pipes.Pipe1,
+                game.workspace.Basement.Important.Pipes.Pipe2,
+                game.workspace.Basement.Important.Pipes.Pipe3,
+                game.workspace.Basement.Important.Pipes.Pipe4,
+                game.workspace.Basement.Important.Pipes.Pipe5,
+                game.workspace.Basement.Important.Pipes.Pipe7
+            }
+
+            for _, pipe in ipairs(pipes) do
+                local effect = pipe.PipeSmoke
+                local ref = effect.ParticleEmitter
+
+                if ref.Enabled == true then
+                    local args = {
+                        [1] = pipe
+                    }
+
+                    game:GetService("ReplicatedStorage").Events.FixingPipes:FireServer(unpack(args))
+                end
+            end
+
+            wait(0.1)
+        end
+    end)
+end
