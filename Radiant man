@@ -226,7 +226,7 @@ function toilet()
                 end
             end
 
-            wait(0.1)  -- Adjust wait time as needed
+            wait(0.1)
         end
     end)
 end
