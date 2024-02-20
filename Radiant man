@@ -1,4 +1,4 @@
--- 2023
+-- Main
 
 getgenv().regen = false;
 getgenv().toilet = false;
@@ -11,6 +11,13 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/mem
 
 local Window = OrionLib:MakeWindow({Name = " Radiant Residents│F Hub", HidePremium = true, SaveConfig = false, ConfigFolder = "OrionTest", IntroText = "F Hub", IntroIcon = "rbxassetid://14500306259", IntroEnabled = true, Icon = "rbxassetid://14500306259"})
 
+OrionLib:MakeNotification({
+	Name = "F Hub",
+	Content = "Have fun!",
+	Image = "rbxassetid://14500306259",
+	Time = 5
+})
+
 -- Tabs and Toggles
 
 local Tab = Window:MakeTab({
@@ -20,7 +27,7 @@ local Tab = Window:MakeTab({
 })
 
 local Tab2 = Window:MakeTab({
-	Name = "Clean and Fix",
+	Name = "Main Game",
 	Icon = "rbxassetid://7733955511",
 	PremiumOnly = false
 })
@@ -109,8 +116,8 @@ end
 
 Tab3:AddDropdown({
 	Name = "Buy Themes",
-	Default = "Select..",
-	Options = {"Select..", "Raiders", "Japan", "Cozy Cabin", "Aquarium", "Christmas", "Overgrown", "Asylum", "Artficial Happiness", "Realistic Basement"},
+	Default = "Select...",
+	Options = {"Select...", "Raiders", "Japan", "Cozy Cabin", "Aquarium", "Christmas", "Overgrown", "Asylum", "Artficial Happiness", "Realistic Basement"},
 	Callback = function(Value)
 		if Value == "Raiders" then
 		local args = {
@@ -181,26 +188,23 @@ game:GetService("ReplicatedStorage").BuyTheme:InvokeServer(unpack(args))
 
 -- INFO
 
+Tab3:AddLabel("Every Theme cost 1 sanity that means 100% sale!")
 Tab4:AddParagraph("Creator of Script","The Script is made by Chinawasspyingonusa.")
 Tab4:AddParagraph("Progress of Script","The Script is in Beta, It may or may not be updated")
 
--- Functions
-
-
-local char = game.Players.LocalPlayer.Character.Humanoid.Health
+-- Functions | 6
 
 function regen()
     spawn(function()
         while getgenv().regen do
-            local plr = game.Players.LocalPlayer
-            local char = plr.Character
+            local plr = game.Players.LocalPlayer.Character
 
-            if char and char:FindFirstChild("Humanoid") then
-                local health = char.Humanoid.Health
+            if plr:FindFirstChild("Humanoid") then
+                local health = plr.Humanoid.Health
 
-                if health < 80 then
+                if health < 82.3 then
                     local args = {
-                        [1] = 10000,
+                        [1] = 200,
                         [2] = false
                     }
 
@@ -208,28 +212,23 @@ function regen()
                 end
             end
 
-            wait(0.5)
+            wait(0.1)
         end
     end)
 end
 
 
--- Toilet
+
 function toilet()
     spawn(function()
         while getgenv().toilet do
-            local toiletSplash = game.workspace.Basement.Important.ToiletSplash
+            local toiletSplash = game.workspace.Basement.Important.ToiletSplash.ParticleEmitter
 
-            if toiletSplash and toiletSplash:FindFirstChild("ParticleEmitter") then
-                local particleEmitter = toiletSplash.ParticleEmitter
-
-                if particleEmitter and particleEmitter:IsA("ParticleEmitter") and particleEmitter.Enabled == true then
+                if toiletSplash.Enabled == true then
                     game:GetService("ReplicatedStorage").Events.CleanedToilet:FireServer()
                 end
-            end
-
-            wait(0.1)
-        end
+            wait(0.5)
+         end
     end)
 end
 
@@ -244,8 +243,8 @@ function virus()
 
 game:GetService("ReplicatedStorage").Events.Virus:FireServer(unpack(args))
            wait(5)
-           end
-      end)
+         end
+    end)
 end
 
 
@@ -253,15 +252,11 @@ end
 function door()
    spawn(function()
    while getgenv().door == true do
-   local guiBar = game.Players.LocalPlayer.PlayerGui.BasementItemGUIs.Computer.CameraBackground.DefenseBar.DefenseBar
+   local guiBar = game.Players.LocalPlayer.PlayerGui.BasementItemGUIs.Computer.CameraBackground.DefenseBar.DefenseBar.Size.X.Scale
 
-            if guiBar and guiBar:IsA("Frame") then
-                local barSize = guiBar.Size.X.Scale
-
-                if barSize < 1 then
+                if guiBar < 1 then
    game:GetService("ReplicatedStorage").Events.SecurityCamera.ChangingHealth:FireServer()
-   end
-   end
+           end
            wait(0)
            end
       end)
@@ -272,18 +267,16 @@ end
 function generator()
     spawn(function()
         while getgenv().generator do
-            local g = game.workspace.Basement
-            local char = g.Important.Generator.Health
+            local g = game.workspace.Basement.Important.Generator.Health.Value
 
-                local health = char.Value
-
-                if health < 200 then
+                if g < 200 then
                     game:GetService("ReplicatedStorage").Events.ChangingGeneratorHealth:FireServer()
                end
             wait(0.5)
         end
     end)
 end
+
 
 
 function Fixp()
@@ -299,10 +292,9 @@ function Fixp()
             }
 
             for _, pipe in ipairs(pipes) do
-                local effect = pipe.PipeSmoke
-                local ref = effect.ParticleEmitter
+                local effect = pipe.PipeSmoke.ParticleEmitter
 
-                if ref.Enabled == true then
+                if effect.Enabled == true then
                     local args = {
                         [1] = pipe
                     }
@@ -315,3 +307,6 @@ function Fixp()
         end
     end)
 end
+
+
+OrionLib:Init()
