@@ -1,6 +1,6 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/memejames/Nothing-project1/main/Suku')))()
 
-local Window = OrionLib:MakeWindow({Name = "Hages RNG│F Hub DLC", HidePremium = true, SaveConfig = false, ConfigFolder = "OrionTest", IntroText = "F Hub DLC", IntroIcon = "rbxassetid://14500306259", IntroEnabled = true, Icon = "rbxassetid://14500306259"})
+local Window = OrionLib:MakeWindow({Name = "Hades RNG│F Hub DLC", HidePremium = true, SaveConfig = false, ConfigFolder = "OrionTest", IntroText = "F Hub DLC", IntroIcon = "rbxassetid://14500306259", IntroEnabled = true, Icon = "rbxassetid://14500306259"})
 
 local Tab = Window:MakeTab({
 	Name = "Main",
