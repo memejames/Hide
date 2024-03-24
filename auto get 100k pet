@@ -1,58 +1,17 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/memejames/Nothing-project1/main/Suku')))()
 
-getgenv().toilet = false;
-getgenv().oilet = false;
-
-local Players = game:GetService("Players")
-local lp = Players.LocalPlayer
-local char = lp.Character
-local hrp = char.HumanoidRootPart
-
-local Window = OrionLib:MakeWindow({Name = "Hade's RNG│F Hub DLC", HidePremium = true, SaveConfig = false, ConfigFolder = "OrionTest", IntroText = "F Hub DLC", IntroIcon = "rbxassetid://14500306259", IntroEnabled = true, Icon = "rbxassetid://14500306259"})
+local Window = OrionLib:MakeWindow({Name = "Hades RNG│F Hub DLC", HidePremium = true, SaveConfig = false, ConfigFolder = "OrionTest", IntroText = "F Hub DLC", IntroIcon = "rbxassetid://14500306259", IntroEnabled = true, Icon = "rbxassetid://14500306259"})
 
 local Tab = Window:MakeTab({
 	Name = "Main",
-	Icon = "rbxassetid://7733955511",
+	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
 local Tab2 = Window:MakeTab({
 	Name = "Map",
-	Icon = "rbxassetid://7733960981",
+	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
-})
-
--- Toggles
-
-Tab:AddToggle({
-	Name = "Auto Collect Pray",
-	Default = false,
-	Callback = function(bool)
-		getgenv().toilet = bool
-		if bool == true then
-		toilet()
-	end
-end
-})
-
-Tab:AddToggle({
-	Name = "Auto Collect Gwa Gwa",
-	Default = false,
-	Callback = function(bool)
-		getgenv().oilet = bool
-		if bool == true then
-		oilet()
-	end
-end
-})
-
--- Buttons
-
-Tab2:AddButton({
-	Name = "No JumpCooldown",
-	Callback = function()
-	    game.Players.LocalPlayer.Character.JumpCD:Destroy()
-end
 })
 
 Tab:AddButton({
@@ -93,8 +52,6 @@ OrionLib:MakeNotification({
   	end    
 })
 
--- Useless
-
 Tab2:AddButton({
 	Name = "TP to Pray",
 	Callback = function()
@@ -122,39 +79,25 @@ Tab2:AddButton({
 	end
 })
 
--- functions
-
-function toilet()
-    spawn(function()
-        while getgenv().toilet do
-            local toiletSplash = game.workspace:FindFirstChild("Pray")
-                if toiletSplash then
-                    hrp.CFrame =  toiletSplash.CFrame
-                    fireproximityprompt(game:GetService("Workspace").Pray.Attachment.ProximityPrompt, 0)
-                end
-            wait(0.5)
-         end
-    end)
-end
-
-function oilet()
-    spawn(function()
-        while getgenv().oilet do
-            local toiletSplash = game.workspace:FindFirstChild("GwaGwa")
-                if toiletSplash then -- Brain no working
-                    hrp.CFrame =  toiletSplash.CFrame
-                    fireproximityprompt(game:GetService("Workspace").GwaGwa.Attachment.ProximityPrompt, 0)
-                end
-            wait(0.5)
-         end
-    end)
-end
 
 
-OrionLib:Init()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 --[[
-Use this if other method patch :))
+Use this if other method patch
 Tab:AddButton({
 	Name = "On Quick Roll",
 	Callback = function()
