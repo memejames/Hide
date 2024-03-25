@@ -23,6 +23,7 @@ function library:Create(text, draggable, keybind)
 	newUI.Name = "newUI"
 	newUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 	newUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+        newUI.ResetOnSpawn = false
 
 	Main.Name = "Main"
 	Main.Parent = newUI
