@@ -5013,41 +5013,44 @@ do
 						end
 					end)
 
-					entry.InputBegan:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.Touch then
-		if not Option.Selectable then return end
-		
-		DestroyRightClick()
-		
-		curSelect = entry
-		
-		local node = TreeList[i + self.ScrollIndex]
-		
-		if GetAwaitRemote:Invoke() then
-			bindSetAwaiting:Fire(node.Object)
-			return
-		end
-		
-		if not Selection.Selected[node.Object] then
-			Selection:Set({node.Object})
-		end
+					local UserInputService = game:GetService("UserInputService")
+
+entry.MouseButton2Down:Connect(function()
+	if not Option.Selectable or UserInputService.TouchEnabled then
+		return
+	end
+	
+	DestroyRightClick()
+	
+	curSelect = entry
+	
+	local node = TreeList[i + self.ScrollIndex]
+	
+	if GetAwaitRemote:Invoke() then
+		bindSetAwaiting:Fire(node.Object)
+		return
+	end
+	
+	if not Selection.Selected[node.Object] then
+		Selection:Set({node.Object})
 	end
 end)
 
-entry.InputEnded:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.Touch then
-		if not Option.Selectable then return end
-		
-		local node = TreeList[i + self.ScrollIndex]
-		
-		if checkTouchInGui(input.Position, entry) then
-			rightClickMenu(node.Object)
-		end
+entry.MouseButton2Up:Connect(function()
+	if not Option.Selectable or UserInputService.TouchEnabled then
+		return
+	end
+	
+	local node = TreeList[i + self.ScrollIndex]
+	
+	if checkMouseInGui(curSelect) or UserInputService:IsTouchDown() then
+		rightClickMenu(node.Object)
 	end
 end)
 
 entry.Parent = listFrame
 
+				end
 
 				entry.Visible = true
 
