@@ -5013,56 +5013,42 @@ do
 						end
 					end)
 
-					-- Function to handle touch tap event for selecting an entry in the tree list
-local function OnTouchTap()
-    if not Option.Selectable then return end
-    
-    DestroyRightClick()
-    
-    curSelect = entry
-    
-    local node = TreeList[i + self.ScrollIndex]
-    
-    if GetAwaitRemote:Invoke() then
-        bindSetAwaiting:Fire(node.Object)
-        return
-    end
-    
-    if not Selection.Selected[node.Object] then
-        Selection:Set({node.Object})
-    end
-end
+					-- Touch event handler for selecting an entry in the tree list
+entry.TouchTap:Connect(function()
+    if entry.IsSelectable then
+        -- Destroy any existing right-click menu
+        DestroyRightClickMenu()
 
--- Function to handle touch long press event for opening right-click menu
-local function OnTouchLongPress()
-    if not Option.Selectable then return end
-    
-    local node = TreeList[i + self.ScrollIndex]
-    
-    if checkTouchInGui(curSelect) then
-        rightClickMenu(node.Object)
-    end
-end
+        -- Set the current selection to the clicked entry
+        SetCurrentSelection(entry)
 
--- Connect touch events to the entry
-entry.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.Touch then
-        OnTouchTap()
+        -- Check if the associated object can be remotely awaited
+        if CanBeRemotelyAwaited(entry.Object) then
+            -- Fire event to set the object as awaiting
+            SetObjectAsAwaiting(entry.Object)
+        end
+
+        -- Check if the object is not already selected, then update the selection
+        if not IsObjectSelected(entry.Object) then
+            UpdateSelection(entry.Object)
+        end
     end
 end)
 
-entry.InputEnded:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.Touch then
-        OnTouchLongPress()
+-- Touch event handler for opening a right-click menu for the selected entry object
+entry.TouchLongPress:Connect(function()
+    if entry.IsSelectable and IsMouseWithinSelectedEntryGUI() then
+        OpenRightClickMenu(entry.Object)
     end
 end)
 
-entry.Parent = listFrame
 
-entry.Visible = true
+					entry.Parent = listFrame
+				end
 
-local object = node.Object
+				entry.Visible = true
 
+				local object = node.Object
 
 				-- update expand icon
 				if #node == 0 then
