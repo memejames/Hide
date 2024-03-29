@@ -5013,46 +5013,37 @@ do
 						end
 					end)
 
-					-- Function to handle touch input for selecting an entry
-local function HandleTouch(entry)
-    if not Option.Selectable then return end
-    
-    curSelect = entry
-    
-    local node = TreeList[i + self.ScrollIndex]
-    
-    if GetAwaitRemote:Invoke() then
-        bindSetAwaiting:Fire(node.Object)
-        return
-    end
-    
-    if not Selection.Selected[node.Object] then
-        Selection:Set({node.Object})
-    end
-end
-
--- Function to handle touch input for showing the right-click menu
-local function ShowRightClickMenu(entry)
-    if not Option.Selectable then return end
-    
-    local node = TreeList[i + self.ScrollIndex]
-    
-    if checkTouchInGui(curSelect) then
-        rightClickMenu(node.Object)
-    end
-end
-
--- Connect touch events
-entry.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.Touch then
-        HandleTouch(entry)
-    end
+					entry.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.Touch then
+		if not Option.Selectable then return end
+		
+		DestroyRightClick()
+		
+		curSelect = entry
+		
+		local node = TreeList[i + self.ScrollIndex]
+		
+		if GetAwaitRemote:Invoke() then
+			bindSetAwaiting:Fire(node.Object)
+			return
+		end
+		
+		if not Selection.Selected[node.Object] then
+			Selection:Set({node.Object})
+		end
+	end
 end)
 
 entry.InputEnded:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.Touch then
-        ShowRightClickMenu(entry)
-    end
+	if input.UserInputType == Enum.UserInputType.Touch then
+		if not Option.Selectable then return end
+		
+		local node = TreeList[i + self.ScrollIndex]
+		
+		if checkTouchInGui(input.Position, entry) then
+			rightClickMenu(node.Object)
+		end
+	end
 end)
 
 entry.Parent = listFrame
