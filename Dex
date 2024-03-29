@@ -5013,38 +5013,50 @@ do
 						end
 					end)
 
-					-- Touch event handler for selecting an entry in the tree list
-entry.TouchTap:Connect(function()
-    if entry.IsSelectable then
-        -- Destroy any existing right-click menu
-        DestroyRightClickMenu()
+					-- Function to handle touch input for selecting an entry
+local function HandleTouch(entry)
+    if not Option.Selectable then return end
+    
+    curSelect = entry
+    
+    local node = TreeList[i + self.ScrollIndex]
+    
+    if GetAwaitRemote:Invoke() then
+        bindSetAwaiting:Fire(node.Object)
+        return
+    end
+    
+    if not Selection.Selected[node.Object] then
+        Selection:Set({node.Object})
+    end
+end
 
-        -- Set the current selection to the clicked entry
-        SetCurrentSelection(entry)
+-- Function to handle touch input for showing the right-click menu
+local function ShowRightClickMenu(entry)
+    if not Option.Selectable then return end
+    
+    local node = TreeList[i + self.ScrollIndex]
+    
+    if checkTouchInGui(curSelect) then
+        rightClickMenu(node.Object)
+    end
+end
 
-        -- Check if the associated object can be remotely awaited
-        if CanBeRemotelyAwaited(entry.Object) then
-            -- Fire event to set the object as awaiting
-            SetObjectAsAwaiting(entry.Object)
-        end
-
-        -- Check if the object is not already selected, then update the selection
-        if not IsObjectSelected(entry.Object) then
-            UpdateSelection(entry.Object)
-        end
+-- Connect touch events
+entry.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.Touch then
+        HandleTouch(entry)
     end
 end)
 
--- Touch event handler for opening a right-click menu for the selected entry object
-entry.TouchLongPress:Connect(function()
-    if entry.IsSelectable and IsMouseWithinSelectedEntryGUI() then
-        OpenRightClickMenu(entry.Object)
+entry.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.Touch then
+        ShowRightClickMenu(entry)
     end
 end)
 
+entry.Parent = listFrame
 
-					entry.Parent = listFrame
-				end
 
 				entry.Visible = true
 
