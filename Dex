@@ -5013,42 +5013,56 @@ do
 						end
 					end)
 
-					entry.MouseButton2Down:connect(function()
-						if not Option.Selectable then return end
-						
-						DestroyRightClick()
-						
-						curSelect = entry
-						
-						local node = TreeList[i + self.ScrollIndex]
-						
-						if GetAwaitRemote:Invoke() then
-							bindSetAwaiting:Fire(node.Object)
-							return
-						end
-						
-						if not Selection.Selected[node.Object] then
-							Selection:Set({node.Object})
-						end
-					end)
-					
-					
-					entry.MouseButton2Up:connect(function()
-						if not Option.Selectable then return end
-						
-						local node = TreeList[i + self.ScrollIndex]
-						
-						if checkMouseInGui(curSelect) then
-							rightClickMenu(node.Object)
-						end
-					end)
+					-- Function to handle touch tap event for selecting an entry in the tree list
+local function OnTouchTap()
+    if not Option.Selectable then return end
+    
+    DestroyRightClick()
+    
+    curSelect = entry
+    
+    local node = TreeList[i + self.ScrollIndex]
+    
+    if GetAwaitRemote:Invoke() then
+        bindSetAwaiting:Fire(node.Object)
+        return
+    end
+    
+    if not Selection.Selected[node.Object] then
+        Selection:Set({node.Object})
+    end
+end
 
-					entry.Parent = listFrame
-				end
+-- Function to handle touch long press event for opening right-click menu
+local function OnTouchLongPress()
+    if not Option.Selectable then return end
+    
+    local node = TreeList[i + self.ScrollIndex]
+    
+    if checkTouchInGui(curSelect) then
+        rightClickMenu(node.Object)
+    end
+end
 
-				entry.Visible = true
+-- Connect touch events to the entry
+entry.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.Touch then
+        OnTouchTap()
+    end
+end)
 
-				local object = node.Object
+entry.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.Touch then
+        OnTouchLongPress()
+    end
+end)
+
+entry.Parent = listFrame
+
+entry.Visible = true
+
+local object = node.Object
+
 
 				-- update expand icon
 				if #node == 0 then
@@ -6495,7 +6509,7 @@ local function CreateDropDown(choices, currentChoice, readOnly, onClick)
 				showArrow(DropDown.ArrowColor)
 			end
 		end)
-		button.MouseButton1Click:connect(function()
+		button.TouchLongPress:Connect(function()
 			if expanded then
 				hideMenu()
 			else
