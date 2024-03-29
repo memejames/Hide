@@ -23,7 +23,7 @@ function library:Create(text, draggable, keybind)
 	newUI.Name = "newUI"
 	newUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 	newUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-        newUI.ResetOnSpawn = false
+    newUI.ResetOnSpawn = false
 
 	Main.Name = "Main"
 	Main.Parent = newUI
@@ -41,17 +41,22 @@ function library:Create(text, draggable, keybind)
 	UICorner.Parent = Main
 	
 	local closeButton = Instance.new("TextButton")
-closeButton.Text = "X"
-closeButton.Size = UDim2.new(0.1, 0, 0.1, 0)
-closeButton.Position = UDim2.new(0.9, 0, 0.023, 0)
-closeButton.TextSize = 20
-closeButton.Font = Enum.Font.FredokaOne
-closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-closeButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-closeButton.BorderSizePixel = 0
-closeButton.Parent = Main
-closeButton.BackgroundTransparency = 1
+    closeButton.Text = "X"
+    closeButton.Size = UDim2.new(0.1, 0, 0.1, 0)
+    closeButton.Position = UDim2.new(0.9, 0, 0.023, 0)
+    closeButton.TextSize = 20
+    closeButton.Font = Enum.Font.Gotham
+    closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    closeButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    closeButton.BorderSizePixel = 0
+    closeButton.Parent = Main
+    closeButton.BackgroundTransparency = 1
+    
+    local function onCloseButtonClicked()
+    newUI:Destroy()
+    end
 
+closeButton.MouseButton1Click:Connect(onCloseButtonClicked)
 	
 	local DropShadowHolder = Instance.new("Frame")
 	local DropShadow = Instance.new("ImageLabel")
