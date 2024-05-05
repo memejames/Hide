@@ -1,5 +1,5 @@
 # Hide
-scripts & themes for ui etc
+scripts & themes for ui etc.
 
 
 
