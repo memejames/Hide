@@ -71,15 +71,13 @@ function Library:Create(table)
     tabContainer.Parent = main
     main.Parent = dark_UI
     main.AnchorPoint = Vector2.new(0.5,0.5)
-    shadow.AnchorPoint = Vector2.new(0.5,0.5)
 
     main.Position = UDim2.new(0.5,0,0.5,0)
-    shadow.Position = UDim2.new(0.5,0,0.5,0)
 
     local tabHandler = {}
 
     function tabHandler:Exit()
-        dark_UI:Destroy()
+        dark_UI:Destroy()h,
     end
 
     function tabHandler:Tab(name)
