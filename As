@@ -78,6 +78,7 @@ function Library:Create(table)
     shadow.BackgroundTransparency = 1
     shadow.Position = UDim2.fromScale(0.224, 0.272)
     shadow.Size = UDim2.fromOffset(529, 331)
+    shadow.ZIndex = -1
     shadow.Parent = main
 
     tabContainer.Parent = main
