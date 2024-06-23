@@ -501,7 +501,7 @@ function Library:Create(table)
     local UserInputService = game:GetService("UserInputService")
 local runService = (game:GetService("RunService"));
 
-local gui = main
+local gui = main and shadow
 
 local dragging
 local dragInput
