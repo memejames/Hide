@@ -80,7 +80,7 @@ function Library:Create(table)
     shadow.Selectable = true
     shadow.Size = UDim2.fromOffset(529, 331)
     shadow.ZIndex = -1
-    shadow.Parent = dark_UI
+    shadow.Parent = main
 
     tabContainer.Parent = main
     main.Parent = dark_UI
