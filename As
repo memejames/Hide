@@ -77,7 +77,7 @@ function Library:Create(table)
     local tabHandler = {}
 
     function tabHandler:Exit()
-        dark_UI:Destroy()h,
+        dark_UI:Destroy()
     end
 
     function tabHandler:Tab(name)
