@@ -648,8 +648,8 @@ do
 		selected = nil,
 		cache = {
 			{
-				title = "Note",
-				content = "",
+				title = "Script 1",
+				content = "print('Hello World');",
 				index = 1
 			}
 		},
