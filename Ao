@@ -95,6 +95,19 @@ function library:Create(text, draggable, keybind)
 	Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 	Title.TextSize = 14.000
 	Title.TextXAlignment = Enum.TextXAlignment.Left
+  
+  local MinButton = Instance.new("ImageButton")
+  MinButton.Parent = newUI
+  MinButton.Size = UDim2.new(0, 40, 0, 40)
+  MinButton.Position = UDim2.new(0.15, 0, 0.15, 0)
+  MinButton.Image = "rbxassetid://82835397926385"
+  MinButton.BackgroundTransparency = 0.3
+  MinButton.BackgroundColor3 = Color3.fromRGB(152, 99, 53)
+  MinButton.Active = true
+  MinButton.Draggable = true
+  MinButton.MouseButton1Click:Connect(function()
+    main.Visible = not main.Visible
+  end)
 
 	scroll.Name = "scroll"
 	scroll.Parent = TabsContainer
