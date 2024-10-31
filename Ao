@@ -106,7 +106,7 @@ function library:Create(text, draggable, keybind)
   MinButton.Active = true
   MinButton.Draggable = true
   MinButton.MouseButton1Click:Connect(function()
-    main.Visible = not main.Visible
+    Main.Visible = not Main.Visible
   end)
 
 	scroll.Name = "scroll"
