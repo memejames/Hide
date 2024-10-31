@@ -44,6 +44,19 @@ function Library:Create(table)
     uICorner.Name = "uICorner"
     uICorner.Parent = main
 
+  local MinButton = Instance.new("ImageButton")
+  MinButton.Parent = dark_UI
+  MinButton.Size = UDim2.new(0, 40, 0, 40)
+  MinButton.Position = UDim2.new(0.15, 0, 0.15, 0)
+  MinButton.Image = "rbxassetid://82835397926385"
+  MinButton.BackgroundTransparency = 0.3
+  MinButton.BackgroundColor3 = Color3.fromRGB(152, 99, 53)
+  MinButton.Active = true
+  MinButton.Draggable = true
+  MinButton.MouseButton1Click:Connect(function()
+    main.Visible = not main.Visible
+  end)
+
     local tabContainer = Instance.new("Frame")
     tabContainer.Name = "tabContainer"
     tabContainer.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
